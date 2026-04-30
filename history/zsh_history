@@ -1,0 +1,95 @@
+git commit .
+git push
+sudo pacman -Ss pintrest
+yay -Ss pintrest
+yay -Ss pinterest
+yay -
+yay -Ss home-assistanty
+yay -Ss home-assistant
+yay -Ss echo-dot
+yay -Ss echodot
+yay -Ss amazon
+yay -Ss alexa
+# For Podman\
+podman port WinBoat | grep "8006" | awk '{print "http://" $3}'\
+# For Docker\
+docker port WinBoat | grep "8006" | awk '{print "http://" $3}'
+sudo pacman -S podman --noconfirm
+docker port WinBoat | grep "8006" | awk '{print "http://" $3}'
+kate ~/.config/zsh/plugins.zsh
+zinit info anexxes
+sudo pacman -S starship
+cd ~/.config/kitty/themes/
+kate rabbits-prety-stimmed.conf
+include themes/rabbit-stim.conf
+kate ~/.config/kitty/kitty.conf
+kate ~/.config/nvim/lua/colors/rabbit.lua
+c
+exec zsh
+free -h
+opencode
+nano ~/.config/nvim/lua/colors/rabbit.lua
+sudo nano ~/.config/nvim/lua/colors/rabbit.lua
+mkdir -p ~/.config/nvim/lua/colors/
+mkdir -p ~/.config/bat/themes/
+nano ~/.config/bat/themes/rabbit-stim.tmTheme
+bat cache --build
+export BAT_THEME="rabbit-stim"
+kate ~/.config/zsh/.zshrc
+nano ~/.config/starship.toml
+home
+c
+c
+clear
+cl
+clr
+cleanup
+...
+..
+.
+~/Downloads/Discord/chrome_crashpad_handler rabbit/
+~/Downloads/Discord
+~/Downloads/Discord/
+cd ~/Downloads/Discord/
+.
+.
+..
+...
+exec zsh
+exec zsh
+exec zsh
+zsh
+zsh
+kate ~/.config/starship.toml
+kate ~/.config/zsh/.zshrc
+source ~/.config/zsh/.zshrc
+source $ZDOTDIR/aliases/aliases.zsh
+echo $ZDOTDIR
+ls -l $ZDOTDIR/aliases/aliases.zsh
+sudo pacman -S pihole
+sudo pacman -Ss pihole
+yay -Ss pihole
+eval "$(zoxide init zsh)"
+cs zsh
+cd zsh
+git add .
+git commit .
+git push
+git add .
+git commit -m "updates\
+""\
+"''"\
+''\
+''\
+""\
+" 
+git push
+git pull
+git push
+cd Git
+zsh
+ECHO $HOME/.local/bin/auto-ai
+echo $HOME/.local/bin/auto-ai
+kate /home/rabbit/.local/bin/auto-ai
+ZSH
+zsh

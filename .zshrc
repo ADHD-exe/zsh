@@ -1,8 +1,4 @@
 #.zshrc
-# Powerlevel10k instant prompt must stay near the top of the file.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 typeset -U path
 export TERM=kitty
 bindkey '^I' complete-word
@@ -13,7 +9,7 @@ source $ZDOTDIR/env/xdg.zsh
 source $ZDOTDIR/env/paths.zsh
 source $ZDOTDIR/plugin.zsh
 source $ZDOTDIR/functions/*.zsh
-source $ZDOTDIR/aliases/aliases.zsh
+source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/prompt.zsh
 
 
@@ -26,7 +22,7 @@ source $ZDOTDIR/prompt.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
-LISTMAX=100
+LISTMAX=25
 zic_custom_binding='^X^I'
 
 # Completion system
@@ -46,12 +42,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# Editor preference.
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='code'
-fi
 
 # Environment.
 path+=(
@@ -65,6 +55,13 @@ export QT_MEDIA_BACKEND=gstreamer
 export LIBVA_DRIVER_NAME=iHD
 export GST_VAAPI_ALL_DRIVERS=1
 export GST_PLUGIN_FEATURE_RANK="vaapi:MAX"
+
+# Editor preference.
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # Prompt theme.
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
