@@ -1,0 +1,28 @@
+# =========================
+# ZSH / shell history (NEVER COMMIT)
+# =========================
+*.history
+.zsh_history
+.zsh_sessions
+.zsh_history.*
+.zsh_history*
+
+# =========================
+# General shell / CLI secrets
+# =========================
+*.log
+*.bak
+*.tmp
+
+# =========================
+# Editor swap / backup files
+# =========================
+*.swp
+*.swo
+*~
+
+# =========================
+# Sensitive config leftovers (optional safety net)
+# =========================
+.env
+.env.*
