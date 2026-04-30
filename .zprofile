@@ -1,3 +1,4 @@
+#zprofile
 #!/usr/bin/env zsh
 
 # =========================

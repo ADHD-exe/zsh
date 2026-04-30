@@ -1,3 +1,5 @@
+#env/apps.zsh
+
 export LESSHISTFILE="${LESSHISTFILE:-/tmp/less-hist}"
 export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
 
