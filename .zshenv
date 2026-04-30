@@ -1,3 +1,5 @@
+#zshenv
+
 #!/usr/bin/env zsh
 
 # Only the bare minimum environment bootstrap

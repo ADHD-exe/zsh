@@ -1,3 +1,5 @@
+# user.zsh
+
 #  Startup 
 # Commands to execute on startup (before the prompt is shown)
 # Check if the interactive shell option is set

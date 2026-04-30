@@ -1,4 +1,5 @@
-    # hydectl tab completion
+# completions/hydectl.zsh 
+# tab completions
     if command -v hydectl &>/dev/null; then
         compdef _hydectl hydectl
         eval "$(hydectl completion zsh)"

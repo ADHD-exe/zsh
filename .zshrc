@@ -1,61 +1,26 @@
+#.zshrc
 # Powerlevel10k instant prompt must stay near the top of the file.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+typeset -U path
 export TERM=kitty
+bindkey '^I' complete-word
+
 
 # Plugins / prompt / core config
-for f in $ZDOTDIR/*.zsh(.N); do
-  source "$f"
-done
-
-# Functions
-for f in $ZDOTDIR/functions/*.zsh(.N); do
-  source "$f"
-done
-
-# Completions
-for f in $ZDOTDIR/completions/*.zsh(.N); do
-  source "$f"
-done
-
-# Aliases
+source $ZDOTDIR/env/xdg.zsh
+source $ZDOTDIR/env/paths.zsh
+source $ZDOTDIR/plugin.zsh
+source $ZDOTDIR/functions/*.zsh
 source $ZDOTDIR/aliases/aliases.zsh
+source $ZDOTDIR/prompt.zsh
+
 
 # Avoid passing empty X11 variables to tools like pacman/GPGME on Wayland.
 [[ -v DISPLAY && -z $DISPLAY ]] && unset DISPLAY
 [[ -v XAUTHORITY && -z $XAUTHORITY ]] && unset XAUTHORITY
 
-# Core Oh My Zsh setup.
-ZSH=/usr/share/oh-my-zsh/
-COMPLETION_WAITING_DOTS="true"
-
-plugins=(
-  alias-finder
-  aliases
-  archlinux
-  colorize
-  colored-man-pages
-  command-not-found
-  dirhistory
-  docker
-  docker-compose
-  extract
-  fast-syntax-highlighting
-  fzf
-  git
-  history
-  history-substring-search
-  man
-  sudo
-  urltools
-  you-should-use
-  z
-  zsh-autosuggestions
-  zsh-bat
-  zsh-interactive-cd
-)
 
 # Inline suggestions while typing plus normal Tab completion.
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -68,29 +33,15 @@ zic_custom_binding='^X^I'
 autoload -Uz compinit
 compinit -d "$ZDOTDIR/zcompdump/.zcompdump"
 
-# Cache directory for Oh My Zsh.
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir -p "$ZSH_CACHE_DIR"
-fi
-
-source "$ZSH/oh-my-zsh.sh"
-source /usr/share/cachyos-zsh-config/cachyos-config.zsh
-bindkey '^I' complete-word
-
-
 if [[ -d ~/.config/zsh ]]; then
   for file in ~/.config/zsh/*.zsh; do
     [[ -r "$file" ]] && source "$file"
   done
 fi
 
-# Shell integrations.
-# The Oh My Zsh `fzf` plugin already handles fzf integration.
-# Avoid sourcing `fzf --zsh` here because it overrides Tab with `fzf-completion`.
 
 # History.
-HISTFILE=~/.zsh_history
+HISTFILE=~/.config/zsh/history/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
@@ -175,7 +126,6 @@ ssfile() {
 }
 
 
-export PATH="$HOME/Documents/Scripts:$PATH"
 export FZF_CTRL_R_OPTS='--preview "echo {}"'
 
 # Managed aliases live in one file. Clear those names first so disabled entries
@@ -194,11 +144,9 @@ if [[ -r ~/.config/zsh/aliases/aliases.zsh ]]; then
       }
     ' ~/.config/zsh/aliases/aliases.zsh
   )
-
-
 fi
 
-if [[ -o interactive && -f ~/.zsh-banner ]]; then
+
+if [[ -o interactive && -f ~/.config/zsh/.zsh-banner ]]; then
   source ~/.config/zsh/.zsh-banner
 fi
-

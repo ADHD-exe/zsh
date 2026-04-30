@@ -1,3 +1,4 @@
+#env/paths.zsh
 # Additional PATH management (if needed later)
 
 typeset -U path

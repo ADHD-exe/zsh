@@ -1,61 +1,77 @@
+# ================================================================
+# Zinit bootstrap (correct + minimal)
+# ================================================================
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "$ZINIT_HOME/zinit.zsh"
 
 
 # ================================================================
+# Prompt (fast path, no delay)
+# ================================================================
+zinit ice depth=1
+zinit snippet "$ZDOTDIR/prompt.zsh"
 
-# Zinit plugin manager setup
-# This section ensures zinit is installed and sourced, which allows you to manage plugins efficiently.
-# Zinit is fast, flexible, and supports loading plugins, snippets, and more from GitHub and other sources.
 
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
+# ================================================================
+# Stage 0 — typing experience (must feel instant)
+# ================================================================
 
-# Custom prompt
-# Loads your custom prompt configuration. Place this after plugins so it can use their features.
-zinit snippet $ZDOTDIR/prompt.zsh
-
-# Plugin: history-search-multi-word
-# Allows searching your command history by multiple words, making it easier to find previous commands.
-zinit load zdharma-continuum/history-search-multi-word
-
-# Plugin: zsh-autosuggestions
-# Suggests commands as you type based on your history and completions, improving efficiency.
+zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
 
-# Plugin: fast-syntax-highlighting
-# Provides fast syntax highlighting for your Zsh command line, making it easier to spot errors.
+zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# Snippet: Useful Zsh functions
-# Loads a collection of handy Zsh functions from a Gist.
-zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
-
-# Plugin: z (rupa/z)
-# Enables quick directory jumping based on your usage history.
-# just like zoxide, but for zsh
-zinit light rupa/z
-
-# Plugin: zsh-completions
-# Adds many extra tab completions for Zsh, improving command-line productivity.
-zinit light zsh-users/zsh-completions
-
-# Plugin: zsh-history-substring-search
-# Lets you search your history for commands containing a substring, similar to Oh My Zsh.
+zinit ice wait lucid
 zinit light zsh-users/zsh-history-substring-search
 
-# Snippet: Oh My Zsh git plugin
-# Loads useful git aliases and functions from Oh My Zsh's git plugin.
-zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+# correct bindings (required)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-# Plugin: zsh-autopair
-# Automatically inserts matching brackets, quotes, etc., as you type.
+
+# ================================================================
+# Stage 1 — completions (heavy, deferred)
+# ================================================================
+zinit ice wait lucid blockf
+
+zinit light zsh-users/zsh-completions
+
+autoload -Uz compinit
+compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
+
+
+# ================================================================
+# Stage 2 — navigation
+# ================================================================
+zinit ice wait lucid
+zinit ice from"gh-r" as"program"
+zinit light ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
+
+
+# ================================================================
+# Stage 3 — QoL plugins
+# ================================================================
+zinit ice wait lucid
 zinit light hlissner/zsh-autopair
 
-# Plugin: fzf-tab
-# Enhances tab completion with fzf-powered fuzzy search and a better UI.
-zinit light Aloxaf/fzf-tab
-
-# Plugin: alias-tips
-# Shows tips for using defined aliases when you type commands, helping you learn and use your aliases.
+zinit ice wait lucid
 zinit light djui/alias-tips
+
+
+# ================================================================
+# Stage 4 — fzf integration (SAFE version)
+# ================================================================
+if command -v fzf >/dev/null 2>&1; then
+  zinit ice wait lucid
+
+  # use official install sources (NOT blob URLs)
+  zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+  zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh
+fi

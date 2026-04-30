@@ -1,3 +1,4 @@
+#function/error-handlers.zsh
 function command_not_found_handler {
     local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
     printf "${green}zsh${reset}: command ${purple}NOT${reset} found: ${bright}'%s'${reset}\n" "$1"
@@ -75,3 +76,5 @@ function no_such_file_or_directory_handler {
 
 # # Warn if the shell is slow to load
 # add-zsh-hook -Uz precmd _slow_load_warning #! try to not use for now as we already move zshrc
+
+
