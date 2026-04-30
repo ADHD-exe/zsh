@@ -46,15 +46,13 @@ autoload -Uz compinit
 compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
 
 
+# # # ================================================================
+# Stage 2 — zoxide (correct + race-free)
 # ================================================================
-# Stage 2 — navigation
-# ================================================================
-zinit ice wait lucid
-zinit ice from"gh-r" as"program"
+zinit ice from"gh-r" as"program" mv"zoxide* -> zoxide" \
+           atload'eval "$(zoxide init zsh)"'
+
 zinit light ajeetdsouza/zoxide
-eval "$(zoxide init zsh)"
-
-
 # ================================================================
 # Stage 3 — QoL plugins
 # ================================================================
