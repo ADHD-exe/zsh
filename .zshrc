@@ -1,17 +1,25 @@
-#.zshrc
+# ================================================================
+# ZSHRC
+# ================================================================
+
 typeset -U path
 export TERM=kitty
 bindkey '^I' complete-word
 
 
-# Plugins / prompt / core config
+# Sources
 source $ZDOTDIR/env/xdg.zsh
 source $ZDOTDIR/env/paths.zsh
-source $ZDOTDIR/plugin.zsh
-source $ZDOTDIR/functions/*.zsh
-source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/prompt.zsh
+source $ZDOTDIR/plugins/plugins.zsh
+source $ZDOTDIR/functions/functions.zsh
+source $ZDOTDIR/aliases/aliases.zsh
+source $ZDOTDIR/.zprompt
+source $ZDOTDIR/.zprofile
+#source $ZDOTDIR/.zlogin
+#source $ZDOTDIR/.zlogout
 
+# Prompt starship
+eval "$(starship init zsh)"
 
 # Avoid passing empty X11 variables to tools like pacman/GPGME on Wayland.
 [[ -v DISPLAY && -z $DISPLAY ]] && unset DISPLAY
@@ -62,11 +70,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
-# Prompt theme.
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-[[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh
 
 # Pacman helpers.
 paccull() {
@@ -125,25 +128,7 @@ ssfile() {
 
 export FZF_CTRL_R_OPTS='--preview "echo {}"'
 
-# Managed aliases live in one file. Clear those names first so disabled entries
-# stay disabled even if plugins or system snippets defined them earlier.
-if [[ -r ~/.config/zsh/aliases/aliases.zsh ]]; then
-  while IFS= read -r alias_name; do
-    unalias -- "$alias_name" 2>/dev/null || true
-  done < <(
-    awk '
-      /^[[:space:]]*#?[[:space:]]*alias[[:space:]]+(--[[:space:]]+)?[A-Za-z0-9_.!-]+=/ {
-        line = $0
-        sub(/^[[:space:]]*#?[[:space:]]*alias[[:space:]]+/, "", line)
-        sub(/^--[[:space:]]+/, "", line)
-        sub(/=.*/, "", line)
-        print line
-      }
-    ' ~/.config/zsh/aliases/aliases.zsh
-  )
-fi
 
-
-if [[ -o interactive && -f ~/.config/zsh/.zsh-banner ]]; then
-  source ~/.config/zsh/.zsh-banner
+if [[ -o interactive && -f ~/.config/zsh/banner.zsh ]]; then
+  source ~/.config/zsh/banner.zsh
 fi

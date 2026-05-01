@@ -93,3 +93,104 @@ echo $HOME/.local/bin/auto-ai
 kate /home/rabbit/.local/bin/auto-ai
 ZSH
 zsh
+exit
+~/Downloads/Discord/
+sudo cd ~/Git/zsh/history/
+zsh
+exit
+zsh
+rabbit
+sl
+ls
+exit
+exit
+ripgrep
+ripgrep
+rgrep
+$ sudo pacman -S ripgrep
+sudo pacman -S ripgrep
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+...
+..
+cd ..
+cd ..
+cd ..
+~/
+cd ~/
+zsh
+su - rabbit
+zsh
+zsh
+zsh
+zsh
+zsh
+zsh
+Git
+cd Git
+cd zsj
+cd zsh
+cd history/
+zsh
+zsh
+ls
+zsh
+zsh
+zsh
+zsh
+eval "$(zoxide init zsh)"
+ /home/rabbit/.config/zsh/aliases.zsh
+git push
+cd Git
+cd zsh
+git add .
+git commit -m "updates"
+git push
+git commit .
+cd ~/.config/zsh/
+git pull
+git add .
+git commit -m "updates"
+git push
+git pull
+git push
+KATE /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+kate /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+kate ~/.config/starship.toml
+zsh
+kate ~/.config/zsh/.zshrc
+kate ~/.config/zsh/aliases.zsh
+kate ~/.config/starship.toml
+zsh
+source $ZDOTDIR/aliases/aliases.zsh
+source $ZDOTDIR/aliases.zsh
+kate ~/.config/zsh/functions.zsh
+opencode
+zsh
+ opencode -s ses_21facfce2ffeaAipd0tCr4mzcV
+codex
+codex
+reboot
+cd /home/rabbit/.config/zsh
+git add .
+git commit .
+git push
+zoxide cd
+zoxide cd ~/Git
+zoxide ~/Git
+zoxide --help
+improt ~/.z
+zoxide import ~/.z
+zoxide import --from z ~/.z
+zoxide import --from z ~/.z --merge
+git commit .
+cd ~/.config/zsh/
+git commit .
