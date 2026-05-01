@@ -8,7 +8,7 @@ The $ZDOTDIR I set up includes functions.zsh aliases.zsh prompt.zsh .zsh-banner
 
 Packages I have installed and am trying to configure/setup include  zinnit, starship, zoxide, fzf, exac, ripgrep, but I don't have everything wired up yet, like zoxide or ripgrep,
 
-
+```
 zsh/
 ├── .zbanner 
 ├── .zlogin
@@ -31,3 +31,4 @@ zsh/
 │       └── .zsh_history
 │       └── zsh_history
 ├──retired/.p10kzsh
+```
